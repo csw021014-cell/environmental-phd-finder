@@ -1100,6 +1100,7 @@ document.getElementById('searchInput').addEventListener('input', filterAll);
 
 // Initial render
 renderCards(uniqueSupervisors);
+window._currentSups = uniqueSupervisors;
 
 
 // PDF upload handler
@@ -1141,7 +1142,7 @@ window.runEval = async function() {
   // Ensure cards have data-sid for score matching
   const allCards = document.querySelectorAll('.card');
   if (!allCards[0] || !allCards[0].dataset.sid) {
-    const sups = window._currentSups || [];
+    const sups = window._currentSups || uniqueSupervisors;
     allCards.forEach((card, i) => { if (sups[i]) card.dataset.sid = sups[i].id; });
   }
 
