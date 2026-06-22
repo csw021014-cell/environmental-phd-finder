@@ -1011,6 +1011,7 @@ const supervisors = [
 ];
 
 // Remove duplicate (au-12 is duplicate of au-06)
+window._allSupervisors = supervisors;
 const uniqueSupervisors = supervisors.filter((s, i, arr) => {
   return arr.findIndex(x => x.id === s.id) === i;
 });
@@ -1142,7 +1143,7 @@ window.runEval = async function() {
   // Ensure cards have data-sid for score matching
   const allCards = document.querySelectorAll('.card');
   if (!allCards[0] || !allCards[0].dataset.sid) {
-    const sups = window._currentSups || uniqueSupervisors;
+    const sups = window._currentSups || window._allSupervisors || [];
     allCards.forEach((card, i) => { if (sups[i]) card.dataset.sid = sups[i].id; });
   }
 
