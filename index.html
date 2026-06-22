@@ -90,6 +90,16 @@ body {
   background: rgba(255,255,255,.08);
   backdrop-filter: blur(8px);
 }
+.eval-hero-btn {
+  display: inline-block; margin-top: 20px; position: relative;
+  padding: 14px 32px; border-radius: 999px;
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  color: #1a0a14; font-size: .95rem; font-weight: 700;
+  text-decoration: none; transition: transform .15s, box-shadow .15s;
+  box-shadow: 0 4px 20px rgba(245,158,11,.35);
+}
+.eval-hero-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(245,158,11,.5); }
+.eval-note { font-size: .75rem; opacity: .55; margin-top: 8px; position: relative; }
 
 /* Container */
 .container { max-width: 1320px; margin: 0 auto; padding: 0 20px; }
@@ -405,6 +415,8 @@ body {
     <span class="badge">🦠 抗生素抗性基因</span>
     <span class="badge">🖥️ 生信/AI</span>
   </div>
+  <a href="evaluate.html" class="eval-hero-btn">🤖 AI 智能评估你的录取概率 →</a>
+  <div class="eval-note">基于 DeepSeek，粘贴背景即可获得 NTU/澳洲/新西兰 PhD 录取分析</div>
 </header>
 
 <!-- Stats -->
