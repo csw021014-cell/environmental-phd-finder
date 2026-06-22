@@ -209,6 +209,42 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,.08);
 }
 
+
+/* Eval Panel */
+.eval-panel {
+  background: var(--white); border-radius: 20px; padding: 24px 28px;
+  box-shadow: 0 2px 16px rgba(0,0,0,.05); margin: 20px auto; max-width: 1320px;
+  border: 2px solid #e2e8f0; transition: border-color .3s;
+}
+.eval-panel.active { border-color: #7c3aed; }
+.eval-panel h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; color: #1e293b; }
+.eval-form { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
+.eval-form textarea { flex: 2 1 400px; min-height: 80px; padding: 12px; border-radius: 12px; border: 2px solid #e2e8f0; font-size: .88rem; font-family: inherit; resize: vertical; outline: none; }
+.eval-form textarea:focus { border-color: #7c3aed; }
+.eval-form select { padding: 10px 14px; border-radius: 12px; border: 2px solid #e2e8f0; font-size: .85rem; background: white; }
+.eval-form button { padding: 12px 28px; border-radius: 12px; background: linear-gradient(135deg,#7c3aed,#a855f7); color: white; border: none; font-weight: 700; cursor: pointer; font-size: .92rem; white-space: nowrap; }
+.eval-form button:disabled { opacity: .5; cursor: not-allowed; }
+.eval-spinner { display: none; text-align: center; padding: 16px; }
+.eval-spinner.visible { display: block; }
+.eval-spinner .spinner { display: inline-block; width: 24px; height: 24px; border: 3px solid #e2e8f0; border-top-color: #7c3aed; border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.card .score-badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-weight: 700; font-size: .78rem; margin-top: 6px; }
+.score-high { background: #d1fae5; color: #065f46; }
+.score-mid { background: #fef3c7; color: #92400e; }
+.score-low { background: #fee2e2; color: #991b1b; }
+.card .detail-link { font-size: .75rem; color: #7c3aed; cursor: pointer; margin-top: 4px; display: inline-block; }
+.card .detail-link:hover { text-decoration: underline; }
+.eval-results { display: none; background: var(--white); border-radius: 20px; padding: 28px; box-shadow: 0 2px 16px rgba(0,0,0,.05); margin: 20px auto; max-width: 1320px; }
+.eval-results.visible { display: block; }
+.eval-results h2 { color: #7c3aed; font-size: 1.15rem; margin: 18px 0 8px; }
+.eval-results h2:first-child { margin-top: 0; }
+.eval-results p, .eval-results li { line-height: 1.7; }
+.detail-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 1000; justify-content: center; align-items: center; }
+.detail-modal.visible { display: flex; }
+.detail-modal-content { background: white; border-radius: 20px; padding: 28px; max-width: 600px; max-height: 80vh; overflow-y: auto; margin: 20px; }
+.detail-modal-content h3 { font-size: 1.1rem; color: #1e293b; margin-bottom: 12px; }
+.detail-modal-close { float: right; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #94a3b8; }
+
 /* Grid */
 .grid {
   display: grid;
@@ -402,6 +438,7 @@ body {
   .region-tab { padding: 8px 16px; font-size: .8rem; }
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
 
@@ -415,18 +452,32 @@ body {
     <span class="badge">🦠 抗生素抗性基因</span>
     <span class="badge">🖥️ 生信/AI</span>
   </div>
-  <a href="evaluate.html" class="eval-hero-btn">🤖 AI 智能评估你的录取概率 →</a>
-  <div class="eval-note">基于 DeepSeek，粘贴背景即可获得 NTU/澳洲/新西兰 PhD 录取分析</div>
+
 </header>
 
-<!-- CTA Banner -->
-<div class="container" style="margin-top:-12px;position:relative;z-index:10">
-  <a href="evaluate.html" style="display:flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#f59e0b,#f97316);color:#1a0a14;padding:16px 24px;border-radius:16px;text-decoration:none;font-weight:700;font-size:1.05rem;box-shadow:0 4px 20px rgba(245,158,11,.3);transition:transform .15s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
-    🤖 <span>AI 智能评估你的 PhD 录取概率</span> <span style="opacity:.7">→</span>
-  </a>
-  <p style="text-align:center;font-size:.78rem;color:var(--slate-500);margin-top:8px">基于 DeepSeek，粘贴背景信息即可获取 NTU/澳洲/新西兰 PhD 录取分析报告</p>
+<!-- AI Eval Panel -->
+<div class="container" style="position:relative;z-index:10">
+  <div class="eval-panel" id="evalPanel">
+    <h3>🤖 AI 录取概率评估 <span style="font-weight:400;font-size:.78rem;color:#94a3b8;">— 上传 PDF 简历或粘贴文字，AI 自动分析，结果直接显示在导师卡片上</span></h3>
+    <div class="eval-form">
+      <label style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:12px;border:2px dashed #c4b5d0;cursor:pointer;font-weight:600;font-size:.88rem;color:#7c3aed;background:#faf5ff;white-space:nowrap" id="pdfLabel">
+        📄 上传 PDF 简历 <input type="file" accept=".pdf" id="pdfInput" style="display:none" onchange="handlePDF(event)">
+      </label>
+      <button onclick="document.getElementById('evalBgInput').style.display=document.getElementById('evalBgInput').style.display==='none'?'block':'none'" style="padding:12px 22px;border-radius:12px;border:2px solid #e2e8f0;background:white;font-weight:600;cursor:pointer;font-size:.88rem;white-space:nowrap">✏️ 或手动输入</button>
+      <select id="evalRegion">
+        <option value="all">全部地区</option>
+        <option value="NTU">🇸🇬 NTU</option>
+        <option value="Australia">🇦🇺 澳洲</option>
+        <option value="New Zealand">🇳🇿 新西兰</option>
+      </select>
+      <button id="evalBtn" onclick="runEval()">🚀 开始评估</button>
+    </div>
+    <textarea id="evalBgInput" placeholder="粘贴背景：学校、GPA、论文、技能、语言成绩…（越详细越准）" style="display:none;margin-top:12px"></textarea>
+    <span id="pdfStatus" style="font-size:.8rem;color:#059669;display:none;margin-top:8px"></span>
+    <div class="eval-spinner" id="evalSpinner"><div class="spinner"></div> DeepSeek AI 分析中…（约 20 秒）</div>
+  </div>
+  <div class="eval-results" id="evalResults"></div>
 </div>
-
 <!-- Stats -->
 <div class="container">
   <div class="stats-bar" id="statsBar">
@@ -1049,6 +1100,190 @@ document.getElementById('searchInput').addEventListener('input', filterAll);
 
 // Initial render
 renderCards(uniqueSupervisors);
+
+
+// PDF upload handler
+async function handlePDF(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  document.getElementById('pdfStatus').style.display = 'block';
+  document.getElementById('pdfStatus').textContent = '解析 PDF 中…';
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    let text = '';
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      text += content.items.map(item => item.str).join(' ') + '\n';
+    }
+    document.getElementById('evalBgInput').value = text.trim();
+    document.getElementById('evalBgInput').style.display = 'block';
+    document.getElementById('pdfStatus').textContent = '✅ PDF 已解析 — ' + text.length + ' 字';
+    document.getElementById('evalPanel').classList.add('active');
+  } catch(e) {
+    document.getElementById('pdfStatus').textContent = '❌ 解析失败，请手动粘贴文字';
+  }
+}
+
+// === AI Evaluation ===
+const EVAL_API = 'https://vercel-proxy-snowy-sigma.vercel.app/api/evaluate';
+let evalDone = false;
+
+window.runEval = async function() {
+  const bg = document.getElementById('evalBgInput').value.trim();
+  if (!bg || bg.length < 20) { alert('请至少写 20 字背景信息'); return; }
+  
+  document.getElementById('evalSpinner').classList.add('visible');
+  document.getElementById('evalBtn').disabled = true;
+  document.getElementById('evalPanel').classList.add('active');
+  
+  try {
+    const resp = await fetch(EVAL_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        background: bg,
+        target_region: document.getElementById('evalRegion').value,
+        target_direction: 'environmental',
+        supervisors: uniqueSupervisors.map(s => ({id: s.id, name: s.name, university: s.university, tags: s.tags.join(',')}))
+      })
+    });
+    const data = await resp.json();
+    if (data.error) { alert('错误: ' + data.error); return; }
+    
+    const r = data.result;
+    if (r.raw) { alert(r.raw); return; }
+    
+    evalDone = true;
+    
+    // Update each supervisor card with score
+    if (r.supervisor_scores) {
+      for (const [id, ss] of Object.entries(r.supervisor_scores)) {
+        const pct = ss.score || 0;
+        const cls = pct >= 70 ? 'score-high' : pct >= 40 ? 'score-mid' : 'score-low';
+        // Find the card
+        const cards = document.querySelectorAll('.card');
+        for (const card of cards) {
+          if (card.dataset.sid === id) {
+            // Add score badge
+            const status = card.querySelector('.status');
+            const badge = document.createElement('span');
+            badge.className = 'score-badge ' + cls;
+            badge.textContent = '🎯 录取概率: ' + pct + '%';
+            badge.style.cssText = 'display:block;margin-top:4px;';
+            status.parentNode.insertBefore(badge, status.nextSibling);
+            
+            // Add detail link
+            if (ss.note) {
+              const link = document.createElement('span');
+              link.className = 'detail-link';
+              link.textContent = '📋 AI 详细分析';
+              link.onclick = function() { showDetail(id); };
+              badge.parentNode.insertBefore(link, badge.nextSibling);
+            }
+            break;
+          }
+        }
+      }
+      // Store detail data
+      window._evalDetails = r.supervisor_scores;
+    }
+    
+    // Show overall results
+    renderEvalSummary(r);
+    
+    // Scroll to first scored card
+    const firstBadge = document.querySelector('.score-badge');
+    if (firstBadge) firstBadge.scrollIntoView({behavior: 'smooth', block: 'center'});
+    
+  } catch(e) {
+    alert('网络错误: ' + e.message);
+  } finally {
+    document.getElementById('evalSpinner').classList.remove('visible');
+    document.getElementById('evalBtn').disabled = false;
+  }
+};
+
+function renderEvalSummary(r) {
+  const el = document.getElementById('evalResults');
+  let html = '<h2>📊 AI 评估结果</h2>';
+  const score = r.overall_score || 0;
+  const cls = score >= 70 ? 'score-high' : score >= 45 ? 'score-mid' : 'score-low';
+  html += '<p>整体竞争力：<strong class="score-badge ' + cls + '">' + score + '/100</strong></p>';
+  html += '<p>' + (r.overall_analysis || '') + '</p>';
+  
+  if (r.region_scores) {
+    html += '<p>各地区概率：';
+    for (const [region, s] of Object.entries(r.region_scores)) {
+      const cls2 = s >= 70 ? 'score-high' : s >= 40 ? 'score-mid' : 'score-low';
+      html += ' <span class="score-badge ' + cls2 + '">' + region + ' ' + s + '%</span> ';
+    }
+    html += '</p>';
+  }
+  if (r.strengths?.length) html += '<p><strong>✅ 优势：</strong>' + r.strengths.join('；') + '</p>';
+  if (r.weaknesses?.length) html += '<p><strong>⚠️ 短板：</strong>' + r.weaknesses.join('；') + '</p>';
+  if (r.suggestions?.length) html += '<p><strong>💡 建议：</strong>' + r.suggestions.slice(0,3).join('；') + '</p>';
+  if (r.timeline) html += '<p><strong>📅 时间线：</strong>' + r.timeline + '</p>';
+  
+  el.innerHTML = html;
+  el.classList.add('visible');
+}
+
+window.showDetail = function(supId) {
+  const d = window._evalDetails?.[supId];
+  if (!d) return;
+  let modal = document.getElementById('detailModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'detailModal';
+    modal.className = 'detail-modal';
+    modal.onclick = function(e) { if (e.target === modal) modal.classList.remove('visible'); };
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML = '<div class="detail-modal-content">' +
+    '<button class="detail-modal-close" onclick="document.getElementById(\'detailModal\').classList.remove(\'visible\')">&times;</button>' +
+    '<h3>📋 ' + (d.name || supId) + ' 详细分析</h3>' +
+    '<p>录取概率：<strong>' + (d.score||0) + '%</strong></p>' +
+    '<p>' + (d.note || '暂无详细分析') + '</p>' +
+    '</div>';
+  modal.classList.add('visible');
+};
+
+// Add data-sid attributes to cards for score matching
+const origRender = renderCards;
+renderCards = function(sups) {
+  origRender(sups);
+  // Add data attributes
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card, i) => {
+    if (sups[i]) card.dataset.sid = sups[i].id;
+  });
+  // Re-apply scores if eval was done
+  if (evalDone && window._evalDetails) {
+    for (const [id, ss] of Object.entries(window._evalDetails)) {
+      const card = document.querySelector('.card[data-sid="' + id + '"]');
+      if (card && !card.querySelector('.score-badge')) {
+        const pct = ss.score || 0;
+        const cls = pct >= 70 ? 'score-high' : pct >= 40 ? 'score-mid' : 'score-low';
+        const status = card.querySelector('.status');
+        const badge = document.createElement('span');
+        badge.className = 'score-badge ' + cls;
+        badge.textContent = '🎯 录取概率: ' + pct + '%';
+        badge.style.cssText = 'display:block;margin-top:4px;';
+        status.parentNode.insertBefore(badge, status.nextSibling);
+      }
+    }
+  }
+};
+
+// Save eval background
+const savedEvalBg = localStorage.getItem('phd-eval-bg-v2');
+if (savedEvalBg) document.getElementById('evalBgInput').value = savedEvalBg;
+document.getElementById('evalBgInput').addEventListener('input', function() {
+  localStorage.setItem('phd-eval-bg-v2', this.value);
+});
+
 </script>
 
 </body>
