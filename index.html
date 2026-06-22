@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>环境微生物/水处理 PhD 导师库 — NTU · 澳洲 · 新西兰</title>
+<style>
+:root {
+  --blue-900: #0a1628;
+  --blue-800: #0f2340;
+  --blue-700: #142f54;
+  --blue-600: #1a4a7a;
+  --blue-500: #1e6fa0;
+  --blue-400: #38b2d6;
+  --blue-300: #7dd3e8;
+  --blue-200: #a5e9f4;
+  --blue-100: #d6f5fa;
+  --cyan: #06b6d4;
+  --teal: #14b8a6;
+  --emerald: #10b981;
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --white: #ffffff;
+  --amber: #f59e0b;
+  --rose: #e11d48;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  background: var(--slate-100);
+  color: var(--slate-800);
+  line-height: 1.6;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-700) 40%, #0e5a6e 100%);
+  color: white;
+  padding: 80px 20px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  position: relative;
+  margin-bottom: 16px;
+}
+.hero p {
+  font-size: 1.1rem;
+  opacity: .85;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  line-height: 1.7;
+}
+.hero .badges {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  position: relative;
+}
+.hero .badge {
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(8px);
+}
+
+/* Container */
+.container { max-width: 1320px; margin: 0 auto; padding: 0 20px; }
+
+/* Stats Bar */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 24px 0;
+  margin-top: -20px;
+  position: relative;
+  z-index: 2;
+}
+.stat-item {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 20px 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  text-align: center;
+  min-width: 120px;
+}
+.stat-item .num {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--blue-700);
+  line-height: 1;
+}
+.stat-item .label { font-size: .82rem; color: var(--slate-500); margin-top: 6px; }
+
+/* Filters */
+.filters {
+  padding: 28px 0;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.search-box {
+  flex: 1 1 360px;
+  max-width: 500px;
+  position: relative;
+}
+.search-box input {
+  width: 100%;
+  padding: 12px 18px 12px 44px;
+  border-radius: 999px;
+  border: 2px solid var(--slate-200);
+  font-size: .95rem;
+  outline: none;
+  transition: border-color .2s;
+  background: white;
+}
+.search-box input:focus { border-color: var(--blue-400); }
+.search-box .icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--slate-400);
+  font-size: 1.1rem;
+}
+.filter-btn {
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 2px solid var(--slate-200);
+  background: white;
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+  color: var(--slate-600);
+  white-space: nowrap;
+}
+.filter-btn:hover { border-color: var(--blue-400); color: var(--blue-600); }
+.filter-btn.active { background: var(--blue-700); color: white; border-color: var(--blue-700); }
+
+/* Region Tabs */
+.region-tabs {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin: 8px 0 32px;
+  background: var(--slate-200);
+  border-radius: 999px;
+  padding: 4px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.region-tab {
+  padding: 10px 28px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--slate-600);
+  transition: all .2s;
+}
+.region-tab.active {
+  background: white;
+  color: var(--blue-700);
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 24px;
+  padding-bottom: 48px;
+}
+
+/* Card */
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 2px 16px rgba(0,0,0,.05);
+  transition: transform .2s, box-shadow .2s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid var(--slate-100);
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,.08); }
+.card .uni-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 14px;
+  width: fit-content;
+}
+.uni-ntu { background: #fef3c7; color: #92400e; }
+.uni-au { background: #dbeafe; color: #1e40af; }
+.uni-nz { background: #d1fae5; color: #065f46; }
+
+.card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--slate-900);
+  margin-bottom: 4px;
+}
+.card .title {
+  font-size: .85rem;
+  color: var(--slate-500);
+  margin-bottom: 14px;
+}
+
+.card .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.card .tag {
+  font-size: .72rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--slate-100);
+  color: var(--slate-600);
+  font-weight: 500;
+}
+
+.card .links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+  flex-grow: 1;
+}
+.card .links a {
+  color: var(--blue-600);
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color .15s;
+}
+.card .links a:hover { color: var(--blue-400); text-decoration: underline; }
+.card .links a .fa-icon { width: 18px; text-align: center; }
+
+.card .status {
+  font-size: .8rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-top: auto;
+  text-align: center;
+}
+.status-open { background: #d1fae5; color: #065f46; }
+.status-active { background: #dbeafe; color: #1e40af; }
+.status-hot { background: #fef3c7; color: #92400e; }
+
+.card .note {
+  font-size: .78rem;
+  color: var(--slate-500);
+  margin-top: 8px;
+  line-height: 1.4;
+  border-top: 1px solid var(--slate-100);
+  padding-top: 10px;
+}
+
+/* Advice Section */
+.advice-section {
+  background: linear-gradient(135deg, var(--blue-900), #0e5a6e);
+  color: white;
+  margin-top: 20px;
+  padding: 64px 0;
+}
+.advice-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.advice-section .subtitle {
+  text-align: center;
+  opacity: .8;
+  margin-bottom: 44px;
+}
+.advice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.advice-card {
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 28px;
+  border: 1px solid rgba(255,255,255,.12);
+}
+.advice-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.advice-card h4 .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.18);
+  font-size: .9rem;
+  font-weight: 800;
+}
+.advice-card p, .advice-card li {
+  font-size: .88rem;
+  opacity: .88;
+  line-height: 1.7;
+}
+.advice-card ul { padding-left: 18px; }
+.advice-card li { margin-bottom: 6px; }
+.advice-card li::marker { color: var(--blue-300); }
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 32px;
+  font-size: .82rem;
+  color: var(--slate-400);
+  background: white;
+}
+
+/* Empty state */
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--slate-400);
+}
+.empty .big { font-size: 3rem; margin-bottom: 12px; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+  .stats-bar { gap: 12px; }
+  .stat-item { padding: 14px 18px; min-width: auto; }
+  .stat-item .num { font-size: 1.4rem; }
+  .hero { padding: 50px 16px 40px; }
+  .filters { padding: 16px 8px; }
+  .region-tab { padding: 8px 16px; font-size: .8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="hero">
+  <h1>🌊 环境微生物 & 水处理 PhD 导师库</h1>
+  <p>覆盖 NTU 新加坡 · 澳大利亚 · 新西兰 主要大学<br>方向：环境微生物学 · 水处理工程 · 生物信息学 · AMR</p>
+  <div class="badges">
+    <span class="badge">🧬 宏基因组/微生物组</span>
+    <span class="badge">💧 饮用水/污水处理</span>
+    <span class="badge">🦠 抗生素抗性基因</span>
+    <span class="badge">🖥️ 生信/AI</span>
+  </div>
+</header>
+
+<!-- Stats -->
+<div class="container">
+  <div class="stats-bar" id="statsBar">
+    <div class="stat-item"><div class="num" id="totalCount">0</div><div class="label">导师总数</div></div>
+    <div class="stat-item"><div class="num" id="ntuCount">0</div><div class="label">NTU 新加坡</div></div>
+    <div class="stat-item"><div class="num" id="auCount">0</div><div class="label">澳大利亚</div></div>
+    <div class="stat-item"><div class="num" id="nzCount">0</div><div class="label">新西兰</div></div>
+    <div class="stat-item"><div class="num" id="openCount">0</div><div class="label">明确在招</div></div>
+  </div>
+</div>
+
+<!-- Filters -->
+<div class="container">
+  <div class="filters">
+    <div class="search-box">
+      <span class="icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="搜索导师姓名、研究方向、大学…">
+    </div>
+    <button class="filter-btn active" data-tag="all">全部</button>
+    <button class="filter-btn" data-tag="宏基因组">🧬 宏基因组</button>
+    <button class="filter-btn" data-tag="水处理">💧 水处理</button>
+    <button class="filter-btn" data-tag="AMR">🦠 AMR</button>
+    <button class="filter-btn" data-tag="生信">🖥️ 生信</button>
+    <button class="filter-btn" data-tag="2026在招">🔥 2026 在招</button>
+  </div>
+  <div class="region-tabs">
+    <button class="region-tab active" data-region="all">🌏 全部地区</button>
+    <button class="region-tab" data-region="NTU">🇸🇬 NTU 新加坡</button>
+    <button class="region-tab" data-region="Australia">🇦🇺 澳大利亚</button>
+    <button class="region-tab" data-region="New Zealand">🇳🇿 新西兰</button>
+  </div>
+</div>
+
+<!-- Cards -->
+<div class="container">
+  <div class="grid" id="cardGrid"></div>
+</div>
+
+<!-- Advice -->
+<section class="advice-section">
+  <div class="container">
+    <h2>📋 申请建议与策略</h2>
+    <p class="subtitle">基于 2025–2026 年三地 PhD 申请实际情况整理</p>
+    <div class="advice-grid">
+      <div class="advice-card">
+        <h4><span class="num">1</span> 时间线与材料</h4>
+        <ul>
+          <li><strong>澳洲：</strong>全年可套磁，但主轮奖学金 (RTP/UIPA) 截止通常 8–10 月（次年 2–3 月入学）；QUT Ashbolt 项目截止 2026.6.26</li>
+          <li><strong>NTU：</strong>1 月/8 月两季入学，Research Scholarship 需提前 4–6 月提交</li>
+          <li><strong>新西兰：</strong>Auckland 多数项目不设硬截止、但 Singhal 组 Marsden 项目截止 2025.10.15</li>
+          <li>材料标配：CV（2 页以内）+ 成绩单 + 研究计划 (1–3 页) + 推荐信 ×2–3 + 雅思/托福</li>
+        </ul>
+      </div>
+      <div class="advice-card">
+        <h4><span class="num">2</span> 套磁邮件怎么写</h4>
+        <ul>
+          <li>标题带关键词：<em>"PhD Enquiry – Environmental Microbiology / Water Treatment – [Your Name]"</em></li>
+          <li>第一段：一句话说你是谁 + 为什么对这个组感兴趣（引用导师 1–2 篇具体论文）</li>
+          <li>第二段：你的研究经历亮点（匹配他们方向的关键技能：宏基因组分析、反应器运行、生信工具开发…）</li>
+          <li>附件：CV + 成绩单，不要发大文件；24h 没回可以 5 天后 follow-up</li>
+        </ul>
+      </div>
+      <div class="advice-card">
+        <h4><span class="num">3</span> 奖学金与经费现实</h4>
+        <ul>
+          <li><strong>澳洲全奖 (RTP)：</strong>≈$37k/年 + 免学费；GPA 换算后通常需 85–88+/100 才稳；竞争激烈，导师经费 (ARC 项目) 可绕过 GPA 门槛</li>
+          <li><strong>NTU Research Scholarship：</strong>月薪 S$2,200–2,700 + 免学费；看本科出身 + GPA + 论文</li>
+          <li><strong>新西兰 UoA Doctoral Scholarship：</strong>≈NZ$33k/年 + 免学费；GPA ≥ 7.0/9.0 (≈85/100) 才有竞争力</li>
+          <li><strong>CSC 联合培养：</strong>中国学生可选，但澳洲近年名额缩减，新西兰相对友好</li>
+        </ul>
+      </div>
+      <div class="advice-card">
+        <h4><span class="num">4</span> 选导师优先级建议</h4>
+        <ul>
+          <li>🔴 <strong>优先套磁（2026 明确在招/有钱）：</strong>QUT Ashbolt (4 个全奖)、Auckland Singhal (3 个 Marsden 全奖)、NTU Xiaole Yin (新 AP 有钱)</li>
+          <li>🟡 <strong>高匹配 + 有经费历史：</strong>UQ Jianhua Guo ($14M 经费)、UNSW Bing-Jie Ni (h=102, 大组)、RMIT Andy Ball (ARC Training Centre)</li>
+          <li>🟢 <strong>值得投石问路：</strong>所有列为 "活跃/可联系" 的导师——很多没有公开广告但在招人</li>
+          <li>优先找近几年拿到大经费的 (ARC DECRA/Future/Discovery, Marsden, MOE Tier 2) + 课题组主页有 PhD 空缺广告的</li>
+        </ul>
+      </div>
+      <div class="advice-card">
+        <h4><span class="num">5</span> 面试准备</h4>
+        <ul>
+          <li>会被问到：你为什么选这个课题？你用过什么生信工具/实验方法？遇到困难怎么解决？毕业后想做什么？</li>
+          <li>准备一个 5 分钟的研究经历 PPT（中英双语备用），包括你做过最骄傲的项目</li>
+          <li>反向提问：组里 PhD 毕业去向？目前项目的数据是否已有？和哪些单位合作？</li>
+          <li>如果英语口语不自信，提前用 ChatGPT 语音模式模拟 3 轮</li>
+        </ul>
+      </div>
+      <div class="advice-card">
+        <h4><span class="num">6</span> 东亚背景申请人特别提示</h4>
+        <ul>
+          <li>NTU 对华五/C9 本科生 GPA 85+ 较友好；双非背景需要高质量论文弥补</li>
+          <li>澳洲近年对中国学生签证审查趋严 (GS 评估)，研究计划要写清楚回国动机</li>
+          <li>新西兰对中国学生相对友好，签证通过率高，但全奖名额少——尽早联系导师讨经费</li>
+          <li><strong>关键：</strong>有发表记录（哪怕是 co-author）远胜于空 GPA；没有论文就突出生信 pipeline 搭建/独立完成项目的能力</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>数据整理于 2025–2026 申请季 · 信息来自各大学官方页面 &amp; 课题组网站 · 建议联系前核实最新状态</p>
+  <p style="margin-top:6px;">🤖 Generated with Claude Code</p>
+</footer>
+
+<script>
+const supervisors = [
+  // ===== NTU SINGAPORE =====
+  {
+    id: "ntu-01",
+    name: "Prof. Shane A. Snyder",
+    title: "Professor of Chemical & Environmental Engineering",
+    university: "NTU Singapore",
+    school: "School of Civil and Environmental Engineering (CEE)",
+    region: "NTU",
+    research: ["水处理", "新兴污染物", "水回用", "高级氧化"],
+    tags: ["水处理", "新兴污染物", "化学分析"],
+    links: [
+      { label: "NTU 官方主页", url: "https://dr.ntu.edu.sg/cris/rp/rp01817", icon: "🏛️" },
+      { label: "NTU CEE 新闻", url: "https://www.ntu.edu.sg/cee/news-events/news/detail/congratulations-to-prof-shane-allen-snyder-for-his-appointment-to-full-professor-with-the-title-professor-of-chemical-environmental-engineering!", icon: "📰" },
+      { label: "Clarke Prize 2021", url: "https://www.ntu.edu.sg/research/research-hub/news/detail/prof-shane-a.-snyder-receives-2021-clarke-prize-for-his-outstanding-contributions-to-water-science-and-technology", icon: "🏆" }
+    ],
+    status: "active",
+    statusText: "活跃招博士生",
+    note: "2021 Clarke Prize 得主 (水领域诺奖级)；曾任美国 Arizona 大学教授，2023 年加入 NTU。方向偏化学/分析，适合做痕量污染物检测与去除。"
+  },
+  {
+    id: "ntu-02",
+    name: "Asst Prof. Xiaole Yin",
+    title: "Assistant Professor of Civil and Environmental Engineering",
+    university: "NTU Singapore",
+    school: "School of Civil and Environmental Engineering (CEE)",
+    region: "NTU",
+    research: ["抗生素抗性基因 (ARGs)", "环境宏基因组", "生信工具开发", "水质微生物"],
+    tags: ["AMR", "宏基因组", "生信", "水处理", "2026在招"],
+    links: [
+      { label: "NTU 官方学术主页", url: "https://dr.ntu.edu.sg/entities/person/Xiaole-Yin", icon: "🏛️" },
+      { label: "Shen Lab 合作页面", url: "http://www.shen-lab.org/author/xiaole-yin/", icon: "🔬" }
+    ],
+    status: "hot",
+    statusText: "🔥 2025.7 新入职，大量招人",
+    note: "2025 年 7 月入职 NTU，HKU PhD + Harvard 博后。开发 ARGs-OAP/Sargfam 等知名生信工具。5 篇 ESI 高被引。新 PI 经费充足，正在大力招 PhD/RA/博后。强烈推荐！"
+  },
+  {
+    id: "ntu-03",
+    name: "Prof. Stephan C. Schuster",
+    title: "Professor, School of Biological Sciences; Research Director, SCELSE",
+    university: "NTU Singapore",
+    school: "School of Biological Sciences / SCELSE",
+    region: "NTU",
+    research: ["环境基因组学", "宏基因组", "空气微生物组", "新一代测序"],
+    tags: ["宏基因组", "生信", "测序技术"],
+    links: [
+      { label: "个人研究网站", url: "https://stephanschuster.com/", icon: "🌐" },
+      { label: "NTU SBS Lab 主页", url: "https://www.ntu.edu.sg/sbs/Research/lab-pages/stephan-schuster-lab", icon: "🏛️" },
+      { label: "SCELSE 简介", url: "https://scelse.sg", icon: "🔬" }
+    ],
+    status: "active",
+    statusText: "接受 PhD 申请",
+    note: "NGS 测序先驱之一，开发超低生物量分析方案。从 mammoth 古 DNA 到空气微生物组均有涉及。适合想做方法学创新的学生。"
+  },
+  {
+    id: "ntu-04",
+    name: "Asst Prof. An-Ni (Anni) Zhang",
+    title: "Assistant Professor, School of Biological Sciences",
+    university: "NTU Singapore",
+    school: "School of Biological Sciences / SCELSE",
+    region: "NTU",
+    research: ["AI 驱动的微生物机制发现", "宏基因组", "噬菌体治疗", "ARGs 风险评估"],
+    tags: ["AMR", "宏基因组", "生信", "AI"],
+    links: [
+      { label: "个人实验室网站", url: "https://genomiverse.net/", icon: "🌐" },
+      { label: "SCELSE 简介", url: "https://scelse.sg/people/asst-prof-anni-zhang/", icon: "🔬" }
+    ],
+    status: "active",
+    statusText: "接受 PhD 申请",
+    note: "HKU PhD (环境工程) + MIT 博后 (Alm Lab)。开发 Mapper/QuickVariants 等工具，用 AI 做 ARG 风险排序。生信+AI 方向强烈推荐。"
+  },
+  {
+    id: "ntu-05",
+    name: "Assoc Prof. Janelle Thompson",
+    title: "Associate Professor, Asian School of the Environment",
+    university: "NTU Singapore",
+    school: "Asian School of the Environment / SCELSE",
+    region: "NTU",
+    research: ["环境微生物学", "水质微生物", "宏基因组", "极端环境生物技术", "废水流行病学"],
+    tags: ["宏基因组", "水处理", "AMR"],
+    links: [
+      { label: "NTU ASE 教师页", url: "https://www.ntu.edu.sg/ase/aboutus/staff-directory/ecology-and-ecosystems---microbial-ecology-and-environmental-genomics/janelle-thompson", icon: "🏛️" }
+    ],
+    status: "active",
+    statusText: "可联系套磁",
+    note: "MIT/WHOI PhD + Stanford MSc。做热带海洋与淡水微生物生态，废水流行病学。偏生态+宏基因组路线。"
+  },
+  {
+    id: "ntu-06",
+    name: "Assoc Prof. Cao Bin",
+    title: "Associate Professor, SCELSE",
+    university: "NTU Singapore",
+    school: "SCELSE / School of Civil and Environmental Engineering",
+    region: "NTU",
+    research: ["生物膜", "塑料圈微生物", "胞外电子传递", "塑料降解菌"],
+    tags: ["宏基因组", "生物膜", "塑料降解"],
+    links: [
+      { label: "NTU CEE 教师页", url: "https://www.ntu.edu.sg/cee/about-us/faculty-directory", icon: "🏛️" },
+      { label: "SCELSE", url: "https://scelse.sg", icon: "🔬" }
+    ],
+    status: "active",
+    statusText: "可联系套磁",
+    note: "做生物膜与塑料圈 (plastisphere) 微生物宏基因组分析，方向新颖。适合有电化学+微生物交叉背景的学生。"
+  },
+  {
+    id: "ntu-07",
+    name: "Prof. Wang Rong",
+    title: "Professor, School of Civil and Environmental Engineering",
+    university: "NTU Singapore",
+    school: "School of Civil and Environmental Engineering / NEWRI",
+    region: "NTU",
+    research: ["膜技术", "水处理", "海水淡化", "膜生物反应器 (MBR)"],
+    tags: ["水处理", "膜技术"],
+    links: [
+      { label: "NTU 官方学术主页", url: "https://dr.ntu.edu.sg/entities/person/Wang-Rong", icon: "🏛️" }
+    ],
+    status: "active",
+    statusText: "活跃招博士生",
+    note: "膜分离技术大牛，SMTC (Singapore Membrane Technology Centre) 主任。方向偏工程/材料，适合化工/环境工程背景学生。"
+  },
+
+  // ===== AUSTRALIA =====
+  {
+    id: "au-01",
+    name: "Prof. Jianhua Guo",
+    title: "Professor & UQ Amplify Fellow; Deputy Director (Research), ACWEB",
+    university: "University of Queensland (UQ)",
+    school: "Australian Centre for Water and Environmental Biotechnology (ACWEB)",
+    region: "Australia",
+    research: ["AMR 环境传播", "水工程微生物生态", "生物脱氮", "甲烷生物转化", "地下水修复"],
+    tags: ["AMR", "宏基因组", "水处理", "生信"],
+    links: [
+      { label: "UQ Experts 官方主页", url: "https://about.uq.edu.au/experts/3045", icon: "🏛️" },
+      { label: "ACWEB 中心主页", url: "https://acweb.uq.edu.au/", icon: "🔬" }
+    ],
+    status: "active",
+    statusText: "正带 20+ 博士生，可联系",
+    note: "ARC Future Fellow，$14M+ 经费。h-index 74，PNAS/ISME/Water Research 常客。AMR+水方向澳洲首选。组大、产出稳定。"
+  },
+  {
+    id: "au-02",
+    name: "Prof. Linda Blackall",
+    title: "Professor, School of BioSciences; Director, EMRI",
+    university: "University of Melbourne",
+    school: "School of BioSciences",
+    region: "Australia",
+    research: ["环境微生物学", "废水处理微生物", "珊瑚共生微生物", "微生物组"],
+    tags: ["宏基因组", "水处理", "微生物生态"],
+    links: [
+      { label: "海洋微生物共生实验室", url: "https://marinemicrobialsymbioses.science.unimelb.edu.au", icon: "🌐" },
+      { label: "Find an Expert 主页", url: "https://findanexpert.unimelb.edu.au/profile/753413-finda-blackall", icon: "🏛️" },
+      { label: "EMRI 主页", url: "https://emri.science.unimelb.edu.au", icon: "🔬" },
+      { label: "Wikipedia", url: "https://en.m.wikipedia.org/wiki/Linda_Blackall", icon: "📖" }
+    ],
+    status: "active",
+    statusText: "活跃，可联系套磁",
+    note: "澳洲科学院院士 (FAA)，环境微生物学先驱。废水处理方向师承非常深厚，实验室与多组合作。墨大排名澳洲第一。"
+  },
+  {
+    id: "au-03",
+    name: "Dist. Prof. Andy Ball",
+    title: "Distinguished Professor; Director, ARC Training Centre for Biosolids",
+    university: "RMIT University",
+    school: "ARC Training Centre for the Transformation of Australia's Biosolids Resource",
+    region: "Australia",
+    research: ["废水处理", "厌氧消化", "生物修复", "环境生物技术", "生物固体资源化"],
+    tags: ["水处理", "宏基因组", "厌氧消化"],
+    links: [
+      { label: "RMIT 官方主页", url: "https://academics.rmit.edu.au/andy-ball/teaching", icon: "🏛️" },
+      { label: "AUSPIRE 项目页", url: "https://auspire.eu/research-team/andy-ball/", icon: "🔬" }
+    ],
+    status: "active",
+    statusText: "带多个 PhD 项目",
+    note: "ARC Training Centre 主任，经费充足。方向偏工程应用 (厌氧消化、生物固体)，适合想进工业界的。"
+  },
+  {
+    id: "au-04",
+    name: "Dr. Christian Krohn",
+    title: "Research Fellow, ARC Training Centre for Biosolids",
+    university: "RMIT University",
+    school: "School of Science",
+    region: "Australia",
+    research: ["废水宏基因组", "长读长测序", "时间序列建模", "微塑料降解菌"],
+    tags: ["宏基因组", "生信", "水处理", "2026在招"],
+    links: [
+      { label: "RMIT 官方主页", url: "https://www.rmit.edu.au/profiles/k/christian-krohn", icon: "🏛️" }
+    ],
+    status: "hot",
+    statusText: "🔥 多个 PhD 项目在招 (2026)",
+    note: "Metagenomic investigation of microplastics 项目截止 2026.5.4；Innovative sequencing 项目截止 2025.9.18。适合生信+环境交叉。"
+  },
+  {
+    id: "au-05",
+    name: "Dr. Alexis Marshall",
+    title: "Lecturer, Molecular Biology and Genetics",
+    university: "RMIT University",
+    school: "School of Science",
+    region: "Australia",
+    research: ["微生物生态", "气候变化影响", "宏基因组", "塑料污染", "沿海湿地"],
+    tags: ["宏基因组", "生信", "微生物生态", "2026在招"],
+    links: [
+      { label: "RMIT 官方主页", url: "https://www.rmit.edu.au/profiles/m/alexis-marshall", icon: "🏛️" }
+    ],
+    status: "hot",
+    statusText: "🔥 有 2026 年 PhD 项目",
+    note: "Molecular echoes of plastic pollution (2026.1) 和 Innovative sequencing (2025.9) 项目在招。做塑料污染的分子生态学响应。"
+  },
+  {
+    id: "au-06",
+    name: "Dr. Mengying Xie",
+    title: "Lecturer / Research Fellow, WISE Lab",
+    university: "Queensland University of Technology (QUT)",
+    school: "School of Civil and Environmental Engineering / WISE Lab",
+    region: "Australia",
+    research: ["废水微生物生态", "宏组学", "同位素示踪", "PFAS", "营养物去除"],
+    tags: ["宏基因组", "水处理", "新兴污染物"],
+    links: [
+      { label: "QUT 官方主页", url: "https://www.qut.edu.au/about/our-people/academic-profiles/m6.xie", icon: "🏛️" }
+    ],
+    status: "active",
+    statusText: "正招 Honours/Masters/PhD",
+    note: "与 Prof Yang Liu 合作，WISE Lab。做宏组学+同位素追踪新兴污染物 (PFAS) 和甲烷/N₂O 转化微生物，方向前沿。"
+  },
+  {
+    id: "au-07",
+    name: "Prof. Nicholas Ashbolt",
+    title: "Professor (4 个全奖 PhD 项目在招)",
+    university: "Queensland University of Technology (QUT)",
+    school: "School of Civil and Environmental Engineering",
+    region: "Australia",
+    research: ["饮用水生物膜", "气候变化下管道微生物", "QMRA", "病原体风险评估"],
+    tags: ["水处理", "宏基因组", "生物膜", "2026在招"],
+    links: [
+      { label: "QUT 奖学金页面", url: "https://www.qut.edu.au/study/fees-and-scholarships/scholarships/microbial-mechanisms-governing-contaminant-release-from-pipe-biofilms-under-climate-stress-phd-scholarship", icon: "🎓" }
+    ],
+    status: "hot",
+    statusText: "🔥 4 个全奖 ($37,010/年) 截止 2026.6.26",
+    note: "重磅机会！4 个全奖 PhD：涵盖湿实验微生物机制、组学标志物、QMRA、预测建模。2026.9 入学。截止日近，速申！"
+  },
+  {
+    id: "au-08",
+    name: "Prof. Guangming Jiang",
+    title: "Professor of Civil, Mining and Environmental Engineering",
+    university: "University of Wollongong (UOW)",
+    school: "School of Civil, Mining and Environmental Engineering",
+    region: "Australia",
+    research: ["废水微生物学", "AI+废水流行病学", "混凝土微生物腐蚀", "生物膜控制"],
+    tags: ["水处理", "宏基因组", "AI", "AMR"],
+    links: [
+      { label: "UOW Scholars 主页", url: "https://scholars.uow.edu.au/guangming-jiang", icon: "🏛️" }
+    ],
+    status: "active",
+    statusText: "欢迎 2026 PhD 咨询",
+    note: "刚升教授，$10M+ 经费，180+ 论文。做 AI+废水流行病学、微生物腐蚀——交叉方向很有特色。"
+  },
+  {
+    id: "au-09",
+    name: "Prof. Bing-Jie (Bruce) Ni",
+    title: "Professor, School of Civil and Environmental Engineering",
+    university: "UNSW Sydney",
+    school: "Water Research Centre, School of Civil and Environmental Engineering",
+    region: "Australia",
+    research: ["低碳废水处理", "N₂O/CH₄ 温室气体减排", "厌氧消化", "微塑料", "电化学水处理"],
+    tags: ["水处理", "厌氧消化", "新兴污染物"],
+    links: [
+      { label: "UNSW Research 主页", url: "https://research.unsw.edu.au/people/professor-bing-jie-ni", icon: "🏛️" },
+      { label: "UNSW 教师页", url: "https://www.unsw.edu.au/staff/bing-jie-ni", icon: "🏫" }
+    ],
+    status: "active",
+    statusText: "大组，常年招 PhD",
+    note: "h-index 102，668+ 论文，36000+ 引用。组很大、产出极高。适合想卷论文的学生。UNSW 工程澳洲 Top 1。"
+  },
+  {
+    id: "au-10",
+    name: "Prof. Rita Henderson",
+    title: "Professor; Deputy Dean (Societal Impact & Translation), UNSW Engineering",
+    university: "UNSW Sydney",
+    school: "School of Chemical Engineering / Algal and Organic Matter (AOM) Lab",
+    region: "Australia",
+    research: ["有害藻华控制", "藻类收获", "混凝/气浮/膜工艺", "饮用水处理", "资源回收"],
+    tags: ["水处理", "藻类", "饮用水"],
+    links: [
+      { label: "UNSW Staff 主页", url: "https://www.unsw.edu.au/staff/rita-henderson", icon: "🏛️" },
+      { label: "UNSW Research 主页", url: "https://research.unsw.edu.au/people/professor-rita-kay-henderson", icon: "🔬" }
+    ],
+    status: "active",
+    statusText: "有 PhD 项目可联系",
+    note: "Water Research 编辑。AOM Lab 专注藻华治理——蓝藻水华是热点方向。2025 有 CPAB (冷等离子体气泡) 处理藻华 PhD 项目在运行。"
+  },
+  {
+    id: "au-11",
+    name: "APrf. Ben van den Akker",
+    title: "Associate Professor",
+    university: "Adelaide University (新合并)",
+    school: "School of Public Health / Water Research",
+    region: "Australia",
+    research: ["废水处理", "水回用", "微生物风险评估", "AMR", "高率藻塘"],
+    tags: ["水处理", "AMR", "水回用"],
+    links: [
+      { label: "Adelaide 教师主页", url: "https://researchers.adelaide.edu.au/profile/ben.vandenakker", icon: "🏛️" }
+    ],
+    status: "active",
+    statusText: "欢迎硕博咨询",
+    note: "学术+工业界混合背景，做过 SA Water。做水回用+微生物风险评估+AMR，应用导向强。阿德莱德生活成本低。"
+  },
+  {
+    id: "au-12",
+    name: "Dr. Mengying Xie",
+    title: "Lecturer, WISE Lab",
+    university: "QUT",
+    school: "School of Civil and Environmental Engineering",
+    region: "Australia",
+    research: ["废水微生物", "宏组学", "同位素", "PFAS"],
+    tags: ["宏基因组", "水处理", "新兴污染物"],
+    links: [
+      { label: "QUT 教师主页", url: "https://www.qut.edu.au/about/our-people/academic-profiles/m6.xie", icon: "🏛️" }
+    ],
+    status: "active",
+    statusText: "可联系套磁",
+    note: "同 au-06"
+  },
+
+  // ===== NEW ZEALAND =====
+  {
+    id: "nz-01",
+    name: "Prof. Naresh Singhal",
+    title: "Professor of Civil and Environmental Engineering",
+    university: "University of Auckland",
+    school: "Faculty of Engineering",
+    region: "New Zealand",
+    research: ["淡水环境 AMR", "多组学 (meta-omics)", "环境宏基因组", "生态干预"],
+    tags: ["AMR", "宏基因组", "生信", "水处理", "2026在招"],
+    links: [
+      { label: "UoA Engineering 主页", url: "https://www.auckland.ac.nz/en/engineering.html", icon: "🏛️" },
+      { label: "ScienceDirect 作者页", url: "https://www.sciencedirect.com/author/7004394142/naresh-singhal", icon: "📄" }
+    ],
+    status: "hot",
+    statusText: "🔥 3 个全奖 PhD (Marsden 资助) — 2026.1 入学",
+    note: "Marsden 基金资助的 AMR 淡水微生物组项目，3 个全奖！需要 DNA 测序/生信经验。2025.10.15 截止申请。n.singhal@auckland.ac.nz。强烈推荐！"
+  },
+  {
+    id: "nz-02",
+    name: "A/Prof. Wei-Qin Zhuang",
+    title: "Associate Professor of Civil and Environmental Engineering",
+    university: "University of Auckland",
+    school: "Faculty of Engineering",
+    region: "New Zealand",
+    research: ["微生物脱氮", "硫/氢驱动反硝化", "水产养殖废水", "地下水修复"],
+    tags: ["水处理", "脱氮", "反硝化"],
+    links: [
+      { label: "UoA Engineering", url: "https://www.auckland.ac.nz/en/engineering.html", icon: "🏛️" }
+    ],
+    status: "active",
+    statusText: "可联系套磁",
+    note: "做硫/氢驱动的微生物脱氮——适合水处理/环境工程背景。偏工艺+微生物交叉。"
+  },
+  {
+    id: "nz-03",
+    name: "Prof. Kevin Simon",
+    title: "Professor, School of Environment",
+    university: "University of Auckland",
+    school: "School of Environment",
+    region: "New Zealand",
+    research: ["淡水生态", "微塑料污染", "塑料降解微生物", "宏基因组"],
+    tags: ["宏基因组", "微塑料", "微生物生态"],
+    links: [
+      { label: "UoA Environment", url: "https://www.auckland.ac.nz/en/science/about-the-faculty/school-of-environment.html", icon: "🏛️" },
+      { label: "George Mason Centre", url: "https://www.georgemasoncentre.auckland.ac.nz/our-research__trashed/plastic-pollution-and-solutions/", icon: "🔬" }
+    ],
+    status: "active",
+    statusText: "可联系套磁",
+    note: "做塑料污染与降解微生物/酶，有 PhD 学生做 DNA 分析和微生物生态。方向很热。"
+  },
+  {
+    id: "nz-04",
+    name: "Prof. Gavin Lear",
+    title: "Professor, School of Biological Sciences",
+    university: "University of Auckland",
+    school: "School of Biological Sciences",
+    region: "New Zealand",
+    research: ["微生物生态学", "环境 DNA/RNA", "宏基因组", "塑料降解", "生物修复"],
+    tags: ["宏基因组", "生信", "微生物生态", "微塑料"],
+    links: [
+      { label: "UoA Biological Sciences", url: "https://www.auckland.ac.nz/en/science/about-the-faculty/school-of-biological-sciences.html", icon: "🏛️" }
+    ],
+    status: "active",
+    statusText: "可联系套磁",
+    note: "与 Kevin Simon 合作塑料降解微生物方向。做 eDNA/eRNA 方法学+微生物生态，适合生信背景。"
+  },
+  {
+    id: "nz-05",
+    name: "A/Prof. Nicola Brown",
+    title: "Associate Professor, Leader of Science & Sustainability",
+    university: "Massey University",
+    school: "College of Sciences",
+    region: "New Zealand",
+    research: ["微藻磷回收", "厌氧消化", "低成本污水处理", "UV 消毒", "模块化过滤"],
+    tags: ["水处理", "厌氧消化", "资源回收"],
+    links: [
+      { label: "Massey 教师主页", url: "https://ns-proxy1.massey.ac.nz/massey/expertise/college-staff-lists/college-of-sciences/all-staff/all-staff_home.cfm?stref=467050", icon: "🏛️" }
+    ],
+    status: "active",
+    statusText: "活跃招收博士生",
+    note: "工程应用导向，做太平洋岛国 (汤加/基里巴斯) 实地项目——厌氧滤池、低成本脱盐。喜欢field work的学生会非常享受。"
+  },
+  {
+    id: "nz-06",
+    name: "Prof. Matthew Schofield",
+    title: "Professor, Department of Mathematics and Statistics",
+    university: "University of Otago / AgResearch",
+    school: "Department of Mathematics and Statistics",
+    region: "New Zealand",
+    research: ["大肠杆菌浓度建模", "水质统计建模", "洪水条件数据"],
+    tags: ["水处理", "生信", "统计建模"],
+    links: [
+      { label: "AgResearch 招聘页", url: "https://yourcareer.agresearch.co.nz/job/PhD-Studentship/1060233066/", icon: "🎓" }
+    ],
+    status: "hot",
+    statusText: "有 PhD studentship 开放",
+    note: "与 Dr Richard Muirhead (AgResearch) 合带。用新西兰全国水质监测大数据+高时间分辨率洪水数据建模。适合统计/生信/环境建模方向。"
+  }
+];
+
+// Remove duplicate (au-12 is duplicate of au-06)
+const uniqueSupervisors = supervisors.filter((s, i, arr) => {
+  return arr.findIndex(x => x.id === s.id) === i;
+});
+
+// Counts
+function updateStats(filtered) {
+  document.getElementById('totalCount').textContent = filtered.length;
+  document.getElementById('ntuCount').textContent = filtered.filter(s => s.region === 'NTU').length;
+  document.getElementById('auCount').textContent = filtered.filter(s => s.region === 'Australia').length;
+  document.getElementById('nzCount').textContent = filtered.filter(s => s.region === 'New Zealand').length;
+  document.getElementById('openCount').textContent = filtered.filter(s => s.status === 'hot').length;
+}
+
+function renderCards(sups) {
+  const grid = document.getElementById('cardGrid');
+  if (sups.length === 0) {
+    grid.innerHTML = `<div class="empty"><div class="big">🔍</div><p>没有匹配的导师，试试调整筛选条件</p></div>`;
+    updateStats([]);
+    return;
+  }
+  updateStats(sups);
+
+  grid.innerHTML = sups.map(s => {
+    const uniClass = s.region === 'NTU' ? 'uni-ntu' : s.region === 'Australia' ? 'uni-au' : 'uni-nz';
+    const statusClass = s.status === 'hot' ? 'status-open' : s.status === 'active' ? 'status-active' : 'status-hot';
+    const regionFlag = s.region === 'NTU' ? '🇸🇬' : s.region === 'Australia' ? '🇦🇺' : '🇳🇿';
+    return `
+    <div class="card" data-region="${s.region}" data-tags="${s.tags.join(',')}">
+      <span class="uni-badge ${uniClass}">${regionFlag} ${s.university}</span>
+      <h3>${s.name}</h3>
+      <div class="title">${s.title}</div>
+      <div class="tags">
+        ${s.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+      </div>
+      <div class="links">
+        ${s.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener"><span class="fa-icon">${l.icon}</span> ${l.label}</a>`).join('')}
+      </div>
+      <div class="status ${statusClass}">${s.statusText}</div>
+      ${s.note ? `<div class="note">💡 ${s.note}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+// Init
+let currentRegion = 'all';
+let currentTag = 'all';
+
+function filterAll() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  const filtered = uniqueSupervisors.filter(s => {
+    const matchRegion = currentRegion === 'all' || s.region === currentRegion;
+    const matchTag = currentTag === 'all' || s.tags.includes(currentTag);
+    const matchSearch = !query || (
+      s.name.toLowerCase().includes(query) ||
+      s.university.toLowerCase().includes(query) ||
+      s.research.some(r => r.toLowerCase().includes(query)) ||
+      s.tags.some(t => t.toLowerCase().includes(query)) ||
+      (s.note && s.note.toLowerCase().includes(query))
+    );
+    return matchRegion && matchTag && matchSearch;
+  });
+  renderCards(filtered);
+}
+
+// Region tabs
+document.querySelectorAll('.region-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.region-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentRegion = btn.dataset.region;
+    filterAll();
+  });
+});
+
+// Tag filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentTag = btn.dataset.tag;
+    filterAll();
+  });
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', filterAll);
+
+// Initial render
+renderCards(uniqueSupervisors);
+</script>
+
+</body>
+</html>
